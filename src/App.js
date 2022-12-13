@@ -39,7 +39,7 @@ function FancyBorder(props) {
     <div className={'FancyBorder FancyBorder-' + props.color}>
       {props.children}
     </div>
-  );
+  );  
 }
 
 function WelcomeDialog() {
