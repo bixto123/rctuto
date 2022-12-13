@@ -11,8 +11,8 @@ import {NameForm} from "./components/NameForm";
 import {EssayForm} from "./components/EssayForm";
 import {FlavorForm} from "./components/FlavorForm";
 import {Reservation} from "./components/Reservation";
-*/
 import {Calculator} from "./components/Calculator";
+*/
 
 /*
 const messages = [
@@ -34,6 +34,27 @@ const posts = [
 ];
 */
 
+function FancyBorder(props) {
+  return (
+    <div className={'FancyBorder FancyBorder-' + props.color}>
+      {props.children}
+    </div>
+  );
+}
+
+function WelcomeDialog() {
+  return (
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        Bienvenue
+      </h1>
+      <p className="Dialog-message">
+        Merci de visiter notre vaisseau spatial !
+      </p>
+    </FancyBorder>
+  );
+}
+
 function App() {
   return (
     <div>
@@ -50,8 +71,9 @@ function App() {
       <EssayForm />
       <FlavorForm />
       <Reservation />
-      */}
       <Calculator />
+      */}
+      <WelcomeDialog />
     </div>
   );
 }
