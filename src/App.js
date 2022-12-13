@@ -13,6 +13,8 @@ import {FlavorForm} from "./components/FlavorForm";
 import {Reservation} from "./components/Reservation";
 import {Calculator} from "./components/Calculator";
 */
+import {WelcomeDialog} from "./components/WelcomeDialog";
+import "./css/composants/WelcomeDialog.css";
 
 /*
 const messages = [
@@ -33,27 +35,6 @@ const posts = [
   {id: 2, title: 'Installation', content: 'Vous pouvez installer React depuis npm.'}
 ];
 */
-
-function FancyBorder(props) {
-  return (
-    <div className={'FancyBorder FancyBorder-' + props.color}>
-      {props.children}
-    </div>
-  );  
-}
-
-function WelcomeDialog() {
-  return (
-    <FancyBorder color="blue">
-      <h1 className="Dialog-title">
-        Bienvenue
-      </h1>
-      <p className="Dialog-message">
-        Merci de visiter notre vaisseau spatial !
-      </p>
-    </FancyBorder>
-  );
-}
 
 function App() {
   return (
