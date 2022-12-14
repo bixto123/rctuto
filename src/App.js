@@ -12,10 +12,21 @@ import {EssayForm} from "./components/EssayForm";
 import {FlavorForm} from "./components/FlavorForm";
 import {Reservation} from "./components/Reservation";
 import {Calculator} from "./components/Calculator";
-import {WelcomeDialog} from "./components/WelcomeDialog";
-import "./css/components/WelcomeDialog.css";
-*/
+import {SplitPane} from "./components/SplitPane";
 import "./css/SplitPane.css";
+*/
+import {SignUpDialog} from "./components/SignUpDialog";
+import "./css/components/SignUpDialog.css";
+
+/*
+function Contacts() {
+  return <div className="Contacts" />;
+}
+
+function Chat() {
+  return <div className="Chat" />;
+}
+*/
 
 /*
 const messages = [
@@ -37,27 +48,6 @@ const posts = [
 ];
 */
 
-function Contacts() {
-  return <div className="Contacts" />;
-}
-
-function Chat() {
-  return <div className="Chat" />;
-}
-
-function SplitPane(props) {
-  return (
-    <div className="SplitPane">
-      <div className="SplitPane-left">
-        {props.left}
-      </div>
-      <div className="SplitPane-right">
-        {props.right}
-      </div>
-    </div>
-  );
-}
-
 function App() {
   return (
     <div>
@@ -75,9 +65,9 @@ function App() {
       <FlavorForm />
       <Reservation />
       <Calculator />
-      <WelcomeDialog />
-      */}
       <SplitPane left={<Contacts />} right={<Chat />} />
+      */}
+      <SignUpDialog />
     </div>
   );
 }
