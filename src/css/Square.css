@@ -17,10 +17,16 @@ body {
   height: calc(10 * 16px);
 }
 
+.Board:focus {
+  outline: none;
+}
+
 .Container {
   overflow: hidden;
   width: calc(10 * 16px);
   height: calc(10 * 16px);
+  border: solid 3px black;
+  border-radius: 10px;
 }
 
 .App {
