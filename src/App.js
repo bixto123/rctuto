@@ -14,9 +14,9 @@ import {Reservation} from "./components/Reservation";
 import {Calculator} from "./components/Calculator";
 import {SplitPane} from "./components/SplitPane";
 import "./css/SplitPane.css";
-*/
 import {SignUpDialog} from "./components/SignUpDialog";
 import "./css/components/SignUpDialog.css";
+*/
 
 /*
 function Contacts() {
@@ -48,26 +48,77 @@ const posts = [
 ];
 */
 
+/*
+  <Clock />
+  <Toggle />
+  <LoginControl />
+  <Page />
+  <Mailbox unreadMessages={messages} />
+  <List items={strings} />
+  <List items={numbers} />
+  <Blog posts={posts} />
+  <NameForm />
+  <EssayForm />
+  <FlavorForm />
+  <Reservation />
+  <Calculator />
+  <SplitPane left={<Contacts />} right={<Chat />} />
+  <SignUpDialog />
+*/
+
+import {useState} from 'react';
+import "./css/Square.css";
+
+function Square(props) {
+  return <div className="Square" style={{backgroundColor: props.color}} />;
+}
+
+function Row(props) {
+  let number = 20;
+  const elements = [];
+  while(number--)
+    elements.push(<Square color={props.color} />);
+  return (
+    <div className="Row">
+      {elements}
+    </div>
+  );
+}
+
+function Board() {
+  let number = 9;
+  const elements = [];
+  while(number--)
+    elements.push(<Row color="skyblue" />);
+  return (
+    <div className="Board">
+      {elements}
+      <Row color="brown" />
+    </div>
+  );
+}
+
+function Example() {
+  // Déclare une nouvelle variable d'état, qu’on va appeler « count »
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Vous avez cliqué {count} fois</p>
+      <button onClick={() => setCount(count + 1)}>
+        Cliquez ici
+      </button>
+    </div>
+  );
+}
+
 function App() {
   return (
     <div>
-      {/*
-      <Clock />
-      <Toggle />
-      <LoginControl />
-      <Page />
-      <Mailbox unreadMessages={messages} />
-      <List items={strings} />
-      <List items={numbers} />
-      <Blog posts={posts} />
-      <NameForm />
-      <EssayForm />
-      <FlavorForm />
-      <Reservation />
-      <Calculator />
-      <SplitPane left={<Contacts />} right={<Chat />} />
-      */}
-      <SignUpDialog />
+      <div className="Container">
+        <Board />
+      </div>
+      <Example />
     </div>
   );
 }
