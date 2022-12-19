@@ -13,15 +13,16 @@ body {
 
 .Board {
   position: relative;
-  width: calc(20*16px);
-  height: calc(10*16px);
-  left: -8px;
+  width: calc(20 * 16px);
+  height: calc(10 * 16px);
 }
 
 .Container {
   overflow: hidden;
-  width: calc(10*16px);
-  height: calc(10*16px);
-  border: solid 2px black;
+  width: calc(10 * 16px);
+  height: calc(10 * 16px);
+}
+
+.App {
   margin: 16px;
 }

@@ -66,7 +66,8 @@ const posts = [
   <SignUpDialog />
 */
 
-import {useState} from 'react';
+import {ExampleHook} from "./components/ExampleHook";
+import {useEffect, useRef} from 'react';
 import "./css/Square.css";
 
 function Square(props) {
@@ -86,39 +87,44 @@ function Row(props) {
 }
 
 function Board() {
+  let position = 0;
+  function handleKeyDown(event) {
+    const board = document.querySelector(".Board");
+    //console.log('User pressed: ', event.key);
+    if(event.key === "ArrowLeft") {
+      if(position > -160)
+        position--;
+      board.style.left = position.toString() + "px";
+    }
+    if(event.key === "ArrowRight") {
+      if(position < 0)
+        position++;
+      board.style.left = position.toString() + "px";
+    }
+  };
+  const ref = useRef(null);
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
   let number = 9;
   const elements = [];
   while(number--)
-    elements.push(<Row color="skyblue" />);
+    elements.push(<Row color="skyblue" />);  
   return (
-    <div className="Board">
+    <div className="Board" ref={ref} tabIndex={-1} onKeyDown={handleKeyDown}>
       {elements}
       <Row color="brown" />
     </div>
   );
 }
 
-function Example() {
-  // Déclare une nouvelle variable d'état, qu’on va appeler « count »
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      <p>Vous avez cliqué {count} fois</p>
-      <button onClick={() => setCount(count + 1)}>
-        Cliquez ici
-      </button>
-    </div>
-  );
-}
-
 function App() {
   return (
-    <div>
+    <div className="App">
       <div className="Container">
         <Board />
       </div>
-      <Example />
+      <ExampleHook />
     </div>
   );
 }
