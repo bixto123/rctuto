@@ -77,8 +77,8 @@ function Square(props) {
 
 function Row(props) {
   let width = 20;
-  let square_key = 0;
   const elements = [];
+  let square_key = 0;
 
   while(width--)
     elements.push(<Square key={square_key++} color={props.color} />);
@@ -91,8 +91,13 @@ function Row(props) {
 }
 
 function Board() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
+
   let position = 0;
-  let row_key = 0;
 
   function handleKeyDown(event) {
     const board = document.querySelector(".Board");
@@ -112,15 +117,10 @@ function Board() {
     }
   }
 
-  const ref = useRef(null);
-
-  useEffect(() => {
-    ref.current.focus();
-  }, []);
-
   let height = 10;
   const elements = [];
-
+  let row_key = 0;
+  
   while(height--)
     elements.push(<Row key={row_key++} color="skyblue" />);
   
