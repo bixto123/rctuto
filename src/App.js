@@ -71,7 +71,14 @@ import {useEffect, useRef} from 'react';
 import "./css/Square.css";
 
 function Square(props) {
-  return <div className="Square" style={{backgroundColor: props.color}} onClick={props.handleClick} />;
+  return (
+    <div
+     index={props.index}
+     className="Square"
+     style={{backgroundColor: props.color}}
+     onClick={props.handleClick}
+    />
+  );
 }
 
 function Row(props) {
@@ -79,8 +86,17 @@ function Row(props) {
   const elements = [];
   let square_key = 0;
 
-  while(width--)
-    elements.push(<Square key={square_key++} color={props.color[square_key]} handleClick={props.handleClick} />);
+  while(width--) {
+    elements.push(
+      <Square 
+        key={square_key}
+        index={props.index + square_key}
+        color={props.color[square_key]}
+        handleClick={props.handleClick}
+      />
+    );
+    square_key++;
+  }
 
   return (
     <div className="Row">
@@ -120,11 +136,17 @@ function Board() {
 
   function handleClick(event) {
     const element = event.target;
+    const index = parseInt(element.attributes.index.value);
+    const copy = color.slice(0);
 
-    if(element.style.backgroundColor == "skyblue")
-      element.style.backgroundColor = "orange";
-    else
-      element.style.backgroundColor = "skyblue";
+    if(element.style.backgroundColor === "skyblue") {
+      copy[index] = "orange";
+      setColor(copy);
+    }
+    else {
+      copy[index] = "skyblue";
+      setColor(copy);
+    }
   }
   
   let height = 10;
@@ -132,7 +154,14 @@ function Board() {
   let row_key = 0;
   
   while(height--) {
-    elements.push(<Row key={row_key} color={color.slice(row_key * 20, row_key * 20 + 20)} handleClick={handleClick} />);
+    elements.push(
+      <Row
+        key={row_key}
+        index={row_key * 20}
+        color={color.slice(row_key * 20, row_key * 20 + 20)}
+        handleClick={handleClick}
+      />
+    );
     row_key++;
   }
   
