@@ -142,16 +142,16 @@ function Board() {
 
   function handleClick(event) {
     const element = event.target;
-    const index = parseInt(element.attributes.index.value);
-    const copy = color.slice(0);
+    const colorIndex = parseInt(element.attributes.index.value);
+    const colorCopy = color.slice(0);
 
     if(element.style.backgroundColor === "skyblue") {
-      copy[index] = "orange";
-      setColor(copy);
+      copy[colorIndex] = "orange";
+      setColor(colorCopy);
     }
     else {
-      copy[index] = "skyblue";
-      setColor(copy);
+      copy[colorIndex] = "skyblue";
+      setColor(colorCopy);
     }
   }
   
