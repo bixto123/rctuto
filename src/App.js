@@ -1,7 +1,3 @@
-import React from "react";
-import {useState, useEffect, useRef} from 'react';
-import "./css/Square.css";
-
 /*
 import {Clock} from "./components/Clock";
 import {Toggle} from "./components/Toggle";
@@ -70,6 +66,10 @@ const posts = [
   <SignUpDialog />  
   <ExampleHook />
 */
+
+import React from "react";
+import {useState, useEffect, useRef} from 'react';
+import "./css/Square.css";
 
 function Square(props) {
   return (
@@ -146,11 +146,11 @@ function Board() {
     const colorCopy = color.slice(0);
 
     if(element.style.backgroundColor === "skyblue") {
-      copy[colorIndex] = "orange";
+      colorCopy[colorIndex] = "orange";
       setColor(colorCopy);
     }
     else {
-      copy[colorIndex] = "skyblue";
+      colorCopy[colorIndex] = "skyblue";
       setColor(colorCopy);
     }
   }
