@@ -90,7 +90,7 @@ function Row(props) {
 }
 
 function Board() {
-  const [color, setColor] = useState(new Array().concat(Array(180).fill("skyblue"), Array(20).fill("orange")));
+  const [color, setColor] = useState([].concat(Array(180).fill("skyblue"), Array(20).fill("orange")));
 
   const ref = useRef(null);
   
