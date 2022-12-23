@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import {useState, useEffect, useRef} from 'react';
+import "./css/Square.css";
+
 /*
 import {Clock} from "./components/Clock";
 import {Toggle} from "./components/Toggle";
@@ -16,8 +19,8 @@ import {SplitPane} from "./components/SplitPane";
 import "./css/SplitPane.css";
 import {SignUpDialog} from "./components/SignUpDialog";
 import "./css/components/SignUpDialog.css";
-*/
 import {ExampleHook} from "./components/ExampleHook";
+*/
 
 /*
 function Contacts() {
@@ -65,10 +68,8 @@ const posts = [
   <Calculator />
   <SplitPane left={<Contacts />} right={<Chat />} />
   <SignUpDialog />  
+  <ExampleHook />
 */
-
-import {useEffect, useRef} from 'react';
-import "./css/Square.css";
 
 function Square(props) {
   return (
@@ -106,7 +107,12 @@ function Row(props) {
 }
 
 function Board() {
-  const [color, setColor] = useState([].concat(Array(180).fill("skyblue"), Array(20).fill("orange")));
+  const [color, setColor] = useState(
+    [].concat(
+      Array(180).fill("skyblue"),
+      Array(20).fill("orange")
+    )
+  );
 
   const ref = useRef(null);
   
@@ -178,7 +184,6 @@ function App() {
       <div className="Container">
         <Board />
       </div>
-      <ExampleHook />
     </div>
   );
 }
