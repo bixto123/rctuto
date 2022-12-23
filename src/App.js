@@ -71,7 +71,7 @@ import {useEffect, useRef} from 'react';
 import "./css/Square.css";
 
 function Square(props) {
-  return <div className="Square" style={{backgroundColor: props.color}} />;
+  return <div className="Square" style={{backgroundColor: props.color}} onClick={props.handleClick} />;
 }
 
 function Row(props) {
@@ -80,7 +80,7 @@ function Row(props) {
   let square_key = 0;
 
   while(width--)
-    elements.push(<Square key={square_key++} color={props.color[square_key]} />);
+    elements.push(<Square key={square_key++} color={props.color[square_key]} handleClick={props.handleClick} />);
 
   return (
     <div className="Row">
@@ -118,18 +118,21 @@ function Board() {
     }
   }
 
-  /*
-  function handleClick() {
+  function handleClick(event) {
+    const element = event.target;
 
+    if(element.style.backgroundColor == "skyblue")
+      element.style.backgroundColor = "orange";
+    else
+      element.style.backgroundColor = "skyblue";
   }
-  */
-
+  
   let height = 10;
   const elements = [];
   let row_key = 0;
   
   while(height--) {
-    elements.push(<Row key={row_key} color={color.slice(row_key * 20, row_key * 20 + 20)} />);
+    elements.push(<Row key={row_key} color={color.slice(row_key * 20, row_key * 20 + 20)} handleClick={handleClick} />);
     row_key++;
   }
   
