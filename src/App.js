@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 /*
 import {Clock} from "./components/Clock";
 import {Toggle} from "./components/Toggle";
@@ -16,8 +16,8 @@ import {SplitPane} from "./components/SplitPane";
 import "./css/SplitPane.css";
 import {SignUpDialog} from "./components/SignUpDialog";
 import "./css/components/SignUpDialog.css";
-import {ExampleHook} from "./components/ExampleHook";
 */
+import {ExampleHook} from "./components/ExampleHook";
 
 /*
 function Contacts() {
@@ -64,8 +64,7 @@ const posts = [
   <Reservation />
   <Calculator />
   <SplitPane left={<Contacts />} right={<Chat />} />
-  <SignUpDialog />
-  <ExampleHook />
+  <SignUpDialog />  
 */
 
 import {useEffect, useRef} from 'react';
@@ -81,7 +80,7 @@ function Row(props) {
   let square_key = 0;
 
   while(width--)
-    elements.push(<Square key={square_key++} color={props.color} />);
+    elements.push(<Square key={square_key++} color={props.color[square_key]} />);
 
   return (
     <div className="Row">
@@ -91,8 +90,10 @@ function Row(props) {
 }
 
 function Board() {
-  const ref = useRef(null);
+  const [color, setColor] = useState(new Array().concat(Array(180).fill("skyblue"), Array(20).fill("orange")));
 
+  const ref = useRef(null);
+  
   useEffect(() => {
     ref.current.focus();
   }, []);
@@ -117,12 +118,20 @@ function Board() {
     }
   }
 
+  /*
+  function handleClick() {
+
+  }
+  */
+
   let height = 10;
   const elements = [];
   let row_key = 0;
   
-  while(height--)
-    elements.push(<Row key={row_key++} color="skyblue" />);
+  while(height--) {
+    elements.push(<Row key={row_key} color={color.slice(row_key * 20, row_key * 20 + 20)} />);
+    row_key++;
+  }
   
   return (
     <div className="Board" ref={ref} tabIndex={-1} onKeyDown={handleKeyDown}>
@@ -137,6 +146,7 @@ function App() {
       <div className="Container">
         <Board />
       </div>
+      <ExampleHook />
     </div>
   );
 }
