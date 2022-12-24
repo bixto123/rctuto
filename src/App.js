@@ -113,30 +113,28 @@ function Board() {
       Array(20).fill("orange")
     )
   );
-
+  const [position, setPosition] = useState(0);
   const ref = useRef(null);
   
   useEffect(() => {
     ref.current.focus();
   }, []);
 
-  let position = 0;
+  useEffect(() => {
+    document.querySelector(".Board").style.left = position.toString() + "px";
+  }, [position]);
 
   function handleKeyDown(event) {
-    const board = document.querySelector(".Board");
-
     //console.log('User pressed: ', event.key);
 
     if(event.key === "ArrowLeft") {
       if(position < 0)
-        position++;
-      board.style.left = position.toString() + "px";
+        setPosition(position + 1);
     }
 
     if(event.key === "ArrowRight") {
       if(position > -160)
-        position--;
-      board.style.left = position.toString() + "px";
+        setPosition(position - 1);
     }
   }
 
