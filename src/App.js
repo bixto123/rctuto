@@ -183,8 +183,15 @@ function Board(props) {
 }
 
 function Game() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    ref.current.style.width = (10 * 16).toString() + "px";
+    ref.current.style.height = (10 * 16).toString() + "px";
+  }, []);
+
   return (
-    <div className="Container">
+    <div className="Container" ref={ref}>
       <Board
         screenWidth={10}
         screenHeight={10}
