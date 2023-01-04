@@ -83,7 +83,7 @@ function Square(props) {
 }
 
 function Row(props) {
-  let width = 20;
+  let width = props.boardWidth;
   const elements = [];
   let square_key = 0;
 
@@ -106,22 +106,27 @@ function Row(props) {
   );
 }
 
-function Board() {
+function Board(props) {
   const [color, setColor] = useState(
     [].concat(
-      Array(180).fill("skyblue"),
-      Array(20).fill("orange")
+      Array(props.boardWidth * (props.boardHeight - 1)).fill("skyblue"),
+      Array(props.boardWidth).fill("orange")
     )
   );
   const [position, setPosition] = useState(0);
   const ref = useRef(null);
-  
+
+  useEffect(() => {
+    ref.current.style.width = (props.boardWidth * 16).toString() + "px";
+    ref.current.style.height = (props.boardHeight * 16).toString() + "px";
+  }, [props.boardWidth], [props.boardHeight]);
+
   useEffect(() => {
     ref.current.focus();
   }, []);
 
   useEffect(() => {
-    document.querySelector(".Board").style.left = position.toString() + "px";
+    ref.current.style.left = position.toString() + "px";
   }, [position]);
 
   function handleKeyDown(event) {
@@ -133,7 +138,7 @@ function Board() {
     }
 
     if(event.key === "ArrowRight") {
-      if(position > -160)
+      if(position > -16 * (props.boardWidth - props.screenWidth))
         setPosition(position - 1);
     }
   }
@@ -153,7 +158,7 @@ function Board() {
     }
   }
   
-  let height = 10;
+  let height = props.screenHeight;
   const elements = [];
   let row_key = 0;
   
@@ -161,8 +166,9 @@ function Board() {
     elements.push(
       <Row
         key={row_key}
-        index={row_key * 20}
-        color={color.slice(row_key * 20, row_key * 20 + 20)}
+        index={row_key * props.boardWidth}
+        color={color.slice(row_key * props.boardWidth, row_key * props.boardWidth + props.boardWidth)}
+        boardWidth={props.boardWidth}
         handleClick={handleClick}
       />
     );
@@ -170,8 +176,21 @@ function Board() {
   }
   
   return (
-    <div className="Board" ref={ref} tabIndex={-1} onKeyDown={handleKeyDown}>
+    <div className="Board" ref={ref} tabIndex={0} onKeyDown={handleKeyDown}>
       {elements}
+    </div>
+  );
+}
+
+function Game() {
+  return (
+    <div className="Container">
+      <Board
+        screenWidth={10}
+        screenHeight={10}
+        boardWidth={100}
+        boardHeight={10}
+      />
     </div>
   );
 }
@@ -179,9 +198,7 @@ function Board() {
 function App() {
   return (
     <div className="App">
-      <div className="Container">
-        <Board />
-      </div>
+      <Game />
     </div>
   );
 }
