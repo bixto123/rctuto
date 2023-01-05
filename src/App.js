@@ -110,7 +110,7 @@ function Board(props) {
   const [color, setColor] = useState(
     [].concat(
       Array(props.boardWidth * (props.boardHeight - 1)).fill("skyblue"),
-      Array(props.boardWidth).fill("orange")
+      Array(props.boardWidth).fill("brown")
     )
   );
   const [position, setPosition] = useState(0);
@@ -149,7 +149,7 @@ function Board(props) {
     const colorCopy = color.slice(0);
 
     if(element.style.backgroundColor === "skyblue") {
-      colorCopy[colorIndex] = "orange";
+      colorCopy[colorIndex] = "brown";
       setColor(colorCopy);
     }
     else {
